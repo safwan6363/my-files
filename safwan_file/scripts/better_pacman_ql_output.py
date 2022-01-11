@@ -30,5 +30,5 @@ output = list(filter(lambda x: not x.endswith('/'), output)) # Remove directorie
 #     print(filepart)
 #     # filepart = "\x1B[0;32m" + filepart + "\x1b[0m"
 
-ls = subprocess.run(["ls", "-lF", "--color=always"] + output, capture_output=True).stdout.decode("ascii").strip())
+ls = subprocess.run(["ls", "-lF", "--color=always"] + output, capture_output=True).stdout.decode("ascii").strip()
 print(ls)
