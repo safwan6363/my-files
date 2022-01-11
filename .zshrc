@@ -42,7 +42,7 @@ alias duh="du -sh * 2> /dev/null | sort -h"         # todo : make this alias wor
 alias dfh="df -h | awk 'NR==1 || NR==4'"
 alias open="xdg-open"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
-alias "pa am='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'"
+alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
 
 # TODOdone: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
@@ -50,10 +50,11 @@ opacity() {
 	sed -i "s/opacity: .*/opacity: $1/" ~/.config/alacritty/alacritty.yml
 }
 
-# Change directory & clear screen and list it
 ccll() {
 	cd $1 && c; ll
 }
+
+# firefox () {
 
 # To make ls show dotfiles first
 LC_COLLATE="C"
