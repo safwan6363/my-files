@@ -1,6 +1,8 @@
 " Why do i even have to do this bruhhhhhhhhhhhhHHh i fucking went insane trying to figure this out
 source /usr/share/vim/vim82/defaults.vim
 
+set shiftwidth=4
+
 " Change the cursor to a bar in insert and replace mode
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[1 q"
