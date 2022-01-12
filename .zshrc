@@ -3,6 +3,7 @@ export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
 export RUSTUP_HOME=$HOME/.local/share/rustup
 export CARGO_HOME=$HOME/.local/share/cargo
+source ~/.local/share/cargo/env # all the previous two lines configure my rust installation location
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
