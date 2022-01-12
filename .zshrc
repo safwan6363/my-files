@@ -1,6 +1,8 @@
 PROMPT="%B%n%b: %F{cyan}%(5~|%-1~/…/%3~|%4~)%f %(!.#.$) "
 export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
+export RUSTUP_HOME=$HOME/.local/share/rustup
+export CARGO_HOME=$HOME/.local/share/cargo
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
