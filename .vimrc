@@ -2,6 +2,7 @@
 source /usr/share/vim/vim82/defaults.vim
 
 set shiftwidth=4
+set tabstop=4
 
 " Change the cursor to a bar in insert and replace mode
 let &t_SI = "\e[5 q"

@@ -4,14 +4,23 @@
 
 import sys
 import requests
+import time
+import random
 
-webhook = "https://discord.com/api/webhooks/892626694542856243/VTjOh0902Y0ObHV2yKvDNSBZh6dvtVbT8u-nQIuHUxyh6qqSfzn9SZD2jwea73CxdUDP"
-msg = ' '.join(sys.argv[1:])
+webhook = "https://discord.com/api/webhooks/861897172843757598/L7RNPyJpS1pODgf0JV-T-d3LAOcjPRC2tTR_35Pll-TdwQoIHSKiMSsxwCUotGvDrOvv"
+# msg = ' '.join(sys.argv[1:])
 
-try:
-    data = requests.post(webhook, json={'content': msg})
-    if data.status_code != 204:
-        print(f'Unfortunately, "{msg} wasn\'t sent.')
-except:
-    print("Bad Webhook :" + webhook)
-    exit()
+def sendmessage(msg, webhook):
+    try:
+        data = requests.post(webhook, json={'content': msg})
+        if data.status_code != 204:
+            print(f'Unfortunately, "{msg} wasn\'t sent.')
+    except:
+        print("Bad Webhook: " + webhook)
+        exit()
+
+while True:
+    time.sleep(1)
+    msg = "".join([chr(random.randint(1, 128)) for i in range(2000)]).strip()
+    sendmessage(msg, webhook)
+
