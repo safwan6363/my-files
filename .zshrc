@@ -23,6 +23,9 @@ zstyle ':completion:*' completer _expand_alias _complete _ignored
 # Don't repeat the same command when pressing up arrow, also makes duplicates gone in the history file but whatever
 setopt HIST_IGNORE_ALL_DUPS
 
+# Change keyboard hold and repeat delay
+xset r rate 350 35
+
 # Enable syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # To have paths colored instead of underlined <- copy pasted this as well
