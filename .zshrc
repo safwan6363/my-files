@@ -40,6 +40,7 @@ alias grep="grep --color=auto"
 alias c="clear"
 alias volume="pactl set-sink-volume @DEFAULT_SINK@"
 alias home_old="sudo mount /dev/sda3 /mnt/home_old"
+alias hdd="sudo mount /dev/sda2 /mnt/hdd"
 alias hddoff="sudo hdparm -Y /dev/sda"
 alias hddon=home_old
 alias duh="du -sh * 2> /dev/null | sort -h"         # todo : make this alias work with dotfiles.
@@ -47,7 +48,7 @@ alias dfh="df -h | awk 'NR==1 || NR==4'"
 alias open="xdg-open"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
-alias fan="watch -n 1 'sensors | grep --color=never \"fan1\|fan2\"; sensors | tail | head --lines=-1'"
+alias fan="sensors | grep --color=never \"fan1\|fan2\"; sensors | tail | head --lines=-1"
 
 # TODOdone: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
