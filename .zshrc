@@ -53,7 +53,7 @@ alias fan="sensors | grep --color=never \"fan1\|fan2\"; sensors | tail | head --
 # TODOdone: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
 opacity() {
-	sed -i "s/opacity: .*/opacity: $1/" ~/.config/alacritty/alacritty.yml
+	sed -i "s/background_opacity .*/background_opacity $1/" ~/.config/kitty/kitty.conf
 }
 
 ccll() {
