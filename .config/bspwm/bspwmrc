@@ -18,3 +18,5 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 xset r rate 225 35
+
+~/.fehbg
