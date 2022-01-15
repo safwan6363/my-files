@@ -38,7 +38,6 @@ alias llf="ll | grep -v '^d\|^l'"                      # well shit this command 
 alias cll="c; ll"
 alias grep="grep --color=auto"
 alias c="clear"
-alias volume="pactl set-sink-volume @DEFAULT_SINK@"
 alias home_old="sudo mount /dev/sda3 /mnt/home_old"
 alias hdd="sudo mount /dev/sda2 /mnt/hdd"
 alias hddoff="sudo hdparm -Y /dev/sda"
@@ -48,7 +47,6 @@ alias dfh="df -h | awk 'NR==1 || NR==4'"
 alias open="xdg-open"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
-alias fan="sensors | grep --color=never \"fan1\|fan2\"; sensors | tail | head --lines=-1"
 
 # TODOdone: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
@@ -60,7 +58,23 @@ ccll() {
 	cd $1 && c; ll
 }
 
-# firefox () {
+firefox() {
+	/usr/bin/firefox file://$(realpath $1)
+}
+
+fan() {
+	echo "CPU info:"
+	sensors | grep --color=never "fan1\|fan2"
+	printf "Temp: "
+	sensors | tail | awk '{print $4}' | grep --color=never "C" | cut -d "+" -f 2 # this is is fucking ugly but it works so i don't care
+	echo "\nGPU info:"
+	echo Fan:  $(nvidia-smi --query-gpu=fan.speed --format=csv,noheader)	
+	echo Temp: $(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)°C
+}
+
+volume() {
+	pactl set-sink-volume @DEFAULT_SINK@ ${1}%
+}
 
 # To make ls show dotfiles first
 LC_COLLATE="C"
