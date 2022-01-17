@@ -11,7 +11,7 @@ call vundle#end()
 filetype plugin indent on
 
 " Ycm config
-" let g:ycm_auto_hover = 1
+set updatetime=1500
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_show_diagnostics_ui = 0
 hi Pmenu ctermbg=236 ctermfg=7
