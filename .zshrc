@@ -99,7 +99,7 @@ unblock() {
 }
 
 commit() {
-	git commit -am $1 && git push origin master
+	git commit -am $1 && git push
 }
 
 # To make ls show dotfiles first
