@@ -95,7 +95,7 @@ Fuck
 
 # TODO: make this more harder to excute, like add something randomly generated to type out
 unblock() {
-	head -n 2 /etc/hosts | sudo tee -a /etc/hosts
+	head -n 2 /etc/hosts | sudo tee /etc/hosts
 }
 
 commit() {
