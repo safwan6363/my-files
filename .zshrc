@@ -53,6 +53,7 @@ alias routine="feh ~/Documents/class\ 7/class_routine.png"
 
 # TODOdone: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
+
 opacity() {
 	sed -i "s/background_opacity .*/background_opacity $1/" ~/.config/kitty/kitty.conf
 }
@@ -78,6 +79,19 @@ fan() {
 volume() {
 	pactl set-sink-volume @DEFAULT_SINK@ ${1}%
 }
+
+block() {
+	ohmygodihatethis=$(cat <<-Fuck
+			::1 www.discord.com
+			::1 cdn.discordapp.com
+			::1 www.youtube.com
+			::1 www.twitter.com
+			::1 www.reddit.com
+Fuck
+)
+	echo $ohmygodihatethis | sudo tee -a /etc/hosts
+}
+		
 
 # To make ls show dotfiles first
 LC_COLLATE="C"
