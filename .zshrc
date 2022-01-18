@@ -92,7 +92,15 @@ Fuck
 )
 	echo $ohmygodihatethis | sudo tee -a /etc/hosts
 }
-		
+
+# TODO: make this more harder to excute, like add something randomly generated to type out
+unblock() {
+	head -n 2 /etc/hosts | sudo tee -a /etc/hosts
+}
+
+commit() {
+	git commit -am $1 && git push origin master
+}
 
 # To make ls show dotfiles first
 LC_COLLATE="C"
