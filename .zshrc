@@ -86,6 +86,7 @@ block() {
 			::1 cdn.discordapp.com
 			::1 www.youtube.com
 			::1 www.twitter.com
+			::1 twitter.com
 			::1 www.reddit.com
 Fuck
 )
