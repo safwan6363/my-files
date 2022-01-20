@@ -18,6 +18,9 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
+# Ultra completion colors (but why are directories red can you fix that future safwan)
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
+
 # Auto expand alias when you press tab, doesn't even work sometimes
 zstyle ':completion:*' completer _expand_alias _complete _ignored
 
@@ -49,7 +52,7 @@ alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
 alias wlanoff="iwctl station wlan0 disconnect"
 alias wlanon="iwctl station wlan0 connect 'safwan 2.4GHz'"
-alias routine="feh ~/Documents/class\ 7/class_routine.png"
+alias routine="feh ~/Documents/class\ 7/class_routine.png &"
 
 # TODOdone: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
@@ -102,7 +105,7 @@ commit() {
 	git commit -am $1 && git push
 }
 
-# To make ls show dotfiles first
+# To make ls show dotfiles separately
 LC_COLLATE="C"
 
 # KEYBINDING SETUP copied from arch wiki
