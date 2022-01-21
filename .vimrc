@@ -28,16 +28,16 @@ let &t_EI = "\e[1 q"
 map <C-x> <esc>ggdG<CR>
 
 " Theme customization
-set termguicolors
+" set termguicolors
 colorscheme base16-ashes
 set cursorline
 set number
 highlight clear LineNr
 highlight clear CursorLineNr
-" highlight clear CursorLine
+highlight clear CursorLine
 highlight Normal guibg=NONE ctermbg=NONE
 highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=252
-" highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
+highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
 highlight LineNr ctermfg=darkgrey
 
 " Move lines up or down by alt j-k, fucking hell it doesnt work
