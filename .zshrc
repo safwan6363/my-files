@@ -128,7 +128,6 @@ key[PageDown]="${terminfo[knp]}"
 key[Shift-Tab]="${terminfo[kcbt]}"
 key[Control-Left]="${terminfo[kLFT5]}"
 key[Control-Right]="${terminfo[kRIT5]}"
-
 # setup key accordingly
 [[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
 [[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line

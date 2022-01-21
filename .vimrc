@@ -15,7 +15,6 @@ filetype plugin indent on
 set updatetime=1500
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_show_diagnostics_ui = 0
-hi Pmenu ctermbg=236 ctermfg=7
 
 set shiftwidth=4
 set tabstop=4
@@ -27,14 +26,16 @@ let &t_EI = "\e[1 q"
 " Delete whole file by ctrl+x
 map <C-x> <esc>ggdG<CR>
 
-" Theme customization
-" set termguicolors
+" Looks customization
+set termguicolors
 colorscheme base16-ashes
 set cursorline
 set number
 highlight clear LineNr
 highlight clear CursorLineNr
 highlight clear CursorLine
+highlight clear Pmenu
+highlight Pmenu ctermbg=236 ctermfg=7
 highlight Normal guibg=NONE ctermbg=NONE
 highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=252
 highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
