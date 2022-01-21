@@ -7,6 +7,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'valloric/youcompleteme'
+Plugin 'chriskempson/base16-vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -26,11 +27,17 @@ let &t_EI = "\e[1 q"
 " Delete whole file by ctrl+x
 map <C-x> <esc>ggdG<CR>
 
-" line highlighting and cursor good look ok
+" Theme customization
+set termguicolors
+colorscheme base16-ashes
 set cursorline
 set number
-highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
-highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=yellow
+highlight clear LineNr
+highlight clear CursorLineNr
+" highlight clear CursorLine
+highlight Normal guibg=NONE ctermbg=NONE
+highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=252
+" highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
 highlight LineNr ctermfg=darkgrey
 
 " Move lines up or down by alt j-k, fucking hell it doesnt work

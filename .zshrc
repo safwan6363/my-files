@@ -53,6 +53,7 @@ alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
 alias wlanoff="iwctl station wlan0 disconnect"
 alias wlanon="iwctl station wlan0 connect 'safwan 2.4GHz'"
 alias routine="feh ~/Documents/class\ 7/class_routine.png &"
+alias bat="bat --theme=base16"
 
 # TODOdone: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
