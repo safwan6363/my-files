@@ -47,6 +47,7 @@ alias hddoff="sudo hdparm -Y /dev/sda"
 alias hddon=home_old
 alias duh="du -sh * 2> /dev/null | sort -h"         # todo : make this alias work with dotfiles.
 alias dfh="df -h | awk 'NR==1 || NR==4'"
+alias storage=dfh
 alias open="xdg-open"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
@@ -79,7 +80,6 @@ fan() {
 	echo Fan:  $(nvidia-smi --query-gpu=fan.speed --format=csv,noheader)	
 	echo Temp: $(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)°C
 }
-
 volume() {
 	pactl set-sink-volume @DEFAULT_SINK@ ${1}%
 }

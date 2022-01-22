@@ -26,8 +26,8 @@ let &t_EI = "\e[1 q"
 " Delete whole file by ctrl+x
 map <C-x> <esc>ggdG<CR>
 
-" Looks customization
-set termguicolors
+" Colors and visual customization
+" set termguicolors
 colorscheme base16-ashes
 set cursorline
 set number
