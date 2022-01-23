@@ -80,21 +80,20 @@ fan() {
 	echo Fan:  $(nvidia-smi --query-gpu=fan.speed --format=csv,noheader)	
 	echo Temp: $(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)°C
 }
+
 volume() {
 	pactl set-sink-volume @DEFAULT_SINK@ ${1}%
 }
 
 block() {
-	ohmygodihatethis=$(cat <<-Fuck
-			::1 www.discord.com
-			::1 cdn.discordapp.com
-			::1 www.youtube.com
-			::1 www.twitter.com
-			::1 twitter.com
-			::1 www.reddit.com
+	cat <<-Fuck | sudo tee -a /etc/hosts
+		::1 www.discord.com
+		::1 cdn.discordapp.com
+		::1 www.youtube.com
+		::1 www.twitter.com
+		::1 twitter.com
+		::1 www.reddit.com
 Fuck
-)
-	echo $ohmygodihatethis | sudo tee -a /etc/hosts
 }
 
 # TODO: make this more harder to excute, like add something randomly generated to type out
