@@ -104,7 +104,7 @@ commit() {
 # Ultra gcc shortcut function holy shit
 gccc() {
 	name=$(echo $1 | cut -d'.' -f1)
-	otherargs=$(echo $@ | cut -f2-)
+	otherargs=$(echo $@ | cut -d' ' -f2-)
 
 	gcc $1 -o $name $otherargs
 }
