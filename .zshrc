@@ -105,6 +105,14 @@ commit() {
 	git commit -am $1 && git push
 }
 
+# Ultra gcc shortcut function holy shit
+gccc() {
+	name=$(echo $1 | cut -d"." -f 1)
+	otherargs=$(echo $@ | cut -f 2)
+
+	gcc $1 -o $name $otherargs
+}
+
 # To make ls show dotfiles separately
 LC_COLLATE="C"
 
