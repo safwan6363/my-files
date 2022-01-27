@@ -26,6 +26,12 @@ zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:
 # Don't repeat the same command when pressing up arrow, also makes duplicates gone in the history file but whatever
 setopt HIST_IGNORE_ALL_DUPS
 
+# Change .zcompdump location. Idk why i choose to change this specific file only while theres tons of other files in my home directory that needs changing.
+compinit -d $HOME/.cache/.zcompdump
+
+# Ok i return back to this mode the last extreme auto expand sucks
+zstyle ':completion:*' completer _expand_alias _complete _ignored expand-word
+
 # Enable syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # To have paths colored instead of underlined <- copy pasted this as well
@@ -34,7 +40,7 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # Aliases and functions
 alias ls="ls --color=auto"
-alias ll="ls -FlAh --group-directories-first --color=always"
+alias ll="ls -FlAh --group-directories-first --color=always --time-style='+%d %b %I:%M %p'"
 alias lls="ls -Flh --group-directories-first --color=always"
 alias lld="ll | grep '^d'"
 alias llf="ll | grep -v '^d\|^l'"                      # well shit this command can't display non directory links
@@ -42,8 +48,8 @@ alias grep="grep --color=auto"
 alias c="clear"
 alias hddon="sudo mount /dev/sda2 /mnt/hdd"
 alias hddoff="sudo hdparm -Y /dev/sda"
-alias storage="du -sh * 2> /dev/null | sort -h"         # todo : make this alias work with dotfiles.
-alias lssize="df -h | awk 'NR==1 || NR==4'"
+alias lssize="du -sh * 2> /dev/null | sort -h"         # todo : make this alias work with dotfiles.
+alias storage="df -h | awk 'NR==1 || NR==4'"
 alias open="xdg-open 2> /dev/null"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
@@ -94,6 +100,7 @@ Fuck
 
 # TODO: make this more harder to excute, like add something randomly generated to type out
 unblock() {
+	randomstring=$(openssl rand -base64 5)
 	head -n 2 /etc/hosts | sudo tee /etc/hosts
 }
 
@@ -157,35 +164,3 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 # Keybinding setup end
-
-# The following is copied from https://github.com/simnalamburt/zsh-expand-all/blob/master/zsh-expand-all.zsh
-# Auto expand aliases.
---expand-internal() {
-  local disable_list=("${(@s|,|)ZSH_EXPAND_ALL_DISABLE}")
-  [[ ${disable_list[(ie)alias]} -gt ${#disable_list} ]] && zle _expand_alias
-  [[ ${disable_list[(ie)word]}  -gt ${#disable_list} ]] && zle expand-word
-}
-
-expand-all() {
-  --expand-internal
-  zle self-insert
-}
-zle -N expand-all
-
-expand-all-enter() {
-  --expand-internal
-  zle accept-line
-}
-zle -N expand-all-enter
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(expand-all-enter)
-
-# space expands all aliases, including global
-bindkey -M emacs " " expand-all
-bindkey -M emacs "^M" expand-all-enter
-
-# control-space to make a normal space
-bindkey -M emacs "^ " magic-space
-
-# normal space during searches
-bindkey -M isearch " " magic-space
-# Auto alias expand setup end
