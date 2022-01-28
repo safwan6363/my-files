@@ -2,6 +2,7 @@ PROMPT="%B%n%b: %F{cyan}%(5~|%-1~/.../%3~|%4~)%f %(!.#.$) "
 export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
 export PATH=$HOME/.local/bin:$PATH
+export LS_COLORS="tw=01;34:ow=01;34" # change the colors for o+w directories, so ugly and eye paining
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
@@ -43,7 +44,7 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # Aliases and functions
 alias ls="ls --color=auto"
-alias ll="ls -FlAh --group-directories-first --color=always --time-style='+%d %b %I:%M %p'"
+alias ll="ls -FlAhG --group-directories-first --color=always --time-style='+%d %b %Y %I:%M %p'"
 alias lls="ls -Flh --group-directories-first --color=always"
 alias lld="ll | grep '^d'"
 alias llf="ll | grep -v '^d\|^l'"                      # well shit this command can't display non directory links
