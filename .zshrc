@@ -3,11 +3,6 @@ export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
 export PATH=$HOME/.local/bin:$PATH
 
-# Rust installation to .local/share instead of ~
-export RUSTUP_HOME=$HOME/.local/share/rustup
-export CARGO_HOME=$HOME/.local/share/cargo
-source ~/.local/share/cargo/env 
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -31,6 +26,14 @@ compinit -d $HOME/.cache/.zcompdump
 
 # Ok i return back to this mode the last extreme auto expand sucks
 zstyle ':completion:*' completer _expand_alias _complete _ignored expand-word
+
+# thefuck alias(????) setup
+eval $(thefuck --alias)
+
+# Rust installation to .local/share instead of ~
+export RUSTUP_HOME=$HOME/.local/share/rustup
+export CARGO_HOME=$HOME/.local/share/cargo
+source ~/.local/share/cargo/env 
 
 # Enable syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
