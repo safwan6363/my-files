@@ -155,7 +155,7 @@ key[Control-Right]="${terminfo[kRIT5]}"
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"   end-of-buffer-or-history
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
 [[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
-[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
+[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" emacs-forward-word
 bindkey '^H' backward-kill-word
 
 # Finally, make sure the terminal is in application mode, when zle is
@@ -168,3 +168,23 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 # Keybinding setup end
+
+# Set a good colorscheme in tty (copy pasted from http://web.archive.org/web/20150225020624/http://phraktured.net:80/linux-console-colors.html (actually nvm idk))
+if [[ "$TERM" == "linux" ]]; then
+	printf "\033]P0222222" #black
+	printf "\033]P1803232" #darkred
+	printf "\033]P25b762f" #darkgreen
+	printf "\033]P3aa9943" #brown
+	printf "\033]P4324c80" #darkblue
+	printf "\033]P5706c9a" #darkmagenta
+	printf "\033]P692b19e" #darkcyan
+	printf "\033]P7ffffff" #lightgrey
+	printf "\033]P8222222" #darkgrey
+	printf "\033]P9982b2b" #red
+	printf "\033]PA89b83f" #green
+	printf "\033]PBefef60" #yellow
+	printf "\033]PC2b4f98" #blue
+	printf "\033]PD826ab1" #magenta
+	printf "\033]PEa1cdcd" #cyan
+	printf "\033]PFdedede" #white
+fi
