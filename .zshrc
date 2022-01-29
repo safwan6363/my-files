@@ -53,7 +53,7 @@ alias c="clear"
 alias hddon="sudo mount /dev/sda2 /mnt/hdd"
 alias hddoff="sudo hdparm -Y /dev/sda"
 alias lssize="du -sh * 2> /dev/null | sort -h"         # todo : make this alias work with dotfiles.
-alias storage="df -h | awk 'NR==1 || NR==4'"
+alias storage="df -h /"
 alias open="xdg-open 2> /dev/null"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
@@ -116,16 +116,38 @@ unblock() {
 	head -n 2 /etc/hosts | sudo tee /etc/hosts
 }
 
-commit() {
-	git commit -am $1 && git push
-}
-
 # Ultra gcc shortcut function holy shit
 gccc() {
 	name=$(echo $1 | cut -d'.' -f1)
 	otherargs=$(echo $@ | cut -d' ' -f2-)
 
 	gcc $1 -o $name $otherargs
+}
+
+# Extremely bad way of making my my-files a proper git repo
+# wow this got complicated
+git() {
+	if [[ "$PWD" =~ /home/safwan6363/safwan_file/my-files* ]]; then
+		for d in .config safwan_file; do
+			for dr in $d/*(N/); do
+				sudo mount --bind "$HOME/$dr" "$(realpath $dr)" # damn
+			done
+		done
+		/usr/bin/git $@
+		for d in .config safwan_file; do # can i even avoid this repeated for loop
+			for dr in $d/*(N/); do
+				sudo umount "$(realpath $dr)"
+			done
+		done
+	else
+		/usr/bin/git $@
+
+	fi
+}
+
+
+commit() {
+	git commit -am $1 && git push
 }
 
 # To make ls show dotfiles separately
