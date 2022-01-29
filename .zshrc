@@ -102,9 +102,17 @@ block() {
 Fuck
 }
 
-# TODO: make this more harder to excute, like add something randomly generated to type out
+# done: make this more harder to excute, like add something randomly generated to type out
+# lmao this is beautiful
 unblock() {
 	randomstring=$(openssl rand -base64 5)
+	printf "Type $randomstring exactly the way it is: "
+	read answer
+	if [ "$answer" != $randomstring ]; then
+		echo 'Fuck you!'
+		return
+	fi
+
 	head -n 2 /etc/hosts | sudo tee /etc/hosts
 }
 
@@ -169,22 +177,35 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 # Keybinding setup end
 
-# Set a good colorscheme in tty (copy pasted from http://web.archive.org/web/20150225020624/http://phraktured.net:80/linux-console-colors.html (actually nvm idk))
-if [[ "$TERM" == "linux" ]]; then
-	printf "\033]P0222222" #black
-	printf "\033]P1803232" #darkred
-	printf "\033]P25b762f" #darkgreen
-	printf "\033]P3aa9943" #brown
-	printf "\033]P4324c80" #darkblue
-	printf "\033]P5706c9a" #darkmagenta
-	printf "\033]P692b19e" #darkcyan
-	printf "\033]P7ffffff" #lightgrey
-	printf "\033]P8222222" #darkgrey
-	printf "\033]P9982b2b" #red
-	printf "\033]PA89b83f" #green
-	printf "\033]PBefef60" #yellow
-	printf "\033]PC2b4f98" #blue
-	printf "\033]PD826ab1" #magenta
-	printf "\033]PEa1cdcd" #cyan
-	printf "\033]PFdedede" #white
+# Set a good colorscheme in tty (copy pasted from http://web.archive.org/web/20150225020624/http://phraktured.net:80/linux-console-colors.html)
+if [ "$TERM" = "linux" ]; then
+    #Black / Light black
+    echo -en "\e]P0222222"
+    echo -en "\e]P8666666"
+    #Red / Light red
+    echo -en "\e]P1cc4747"
+    echo -en "\e]P9bf5858"
+    #Green / Light green
+    echo -en "\e]P2a0cf5d"
+    echo -en "\e]PAb8d68c"
+    #Yellow / Light yellow
+    echo -en "\e]P3e0a524"
+    echo -en "\e]PBedB85c"
+    #Blue / Light blue
+    echo -en "\e]P44194d9"
+    echo -en "\e]PC60aae6"
+    #Purple / Light purple
+    echo -en "\e]P5cc2f6e"
+    echo -en "\e]PDdb588c"
+    #Cyan / Light cyan
+    echo -en "\e]P66d878d"
+    echo -en "\e]PE42717b"
+    #White / Light white...?
+    echo -en "\e]P7c4c4c4"
+    echo -en "\e]PFfefefe"
+
+     #this is an attempt at working utf8 line drawing chars in the linux-console
+#    export TERM=linux+utf8
+    clear #hmm, yeah we need this or else we get funky background collisions
 fi
+
