@@ -130,18 +130,17 @@ git() {
 	if [[ "$PWD" =~ /home/safwan6363/safwan_file/my-files* ]]; then
 		for d in .config safwan_file; do
 			for dr in $d/*(N/); do
-				sudo mount --bind "$HOME/$dr" "$(realpath $dr)" # damn
+				sudo mount --bind "$HOME/$dr" "$(realpath $dr)"
 			done
 		done
 		/usr/bin/git $@
-		for d in .config safwan_file; do # can i even avoid this repeated for loop
+		for d in .config safwan_file; do
 			for dr in $d/*(N/); do
-				sudo umount "$(realpath $dr)"
+				sudo umount $(realpath $dr)
 			done
 		done
 	else
 		/usr/bin/git $@
-
 	fi
 }
 
