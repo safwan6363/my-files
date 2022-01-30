@@ -124,21 +124,28 @@ gccc() {
 	gcc $1 -o $name $otherargs
 }
 
-# Extremely bad way of making my my-files a proper git repo
-# wow this got complicated
+# Extremely bad way of making git think that my-files is a proper repo
+# limitations :-
+# - Only works when at the root of my-files (which is ~/safwan_home/my-files)
+# - Can only bind mount folders one layer deep, like myfiles/*/*
+# - TODO: try using the find command instead for this.
 git() {
-	if [[ "$PWD" =~ /home/safwan6363/safwan_file/my-files* ]]; then
+	if [[ "$PWD" =~ ^\/home\/safwan6363\/safwan_file\/my-files ]]; then
 		for d in .config safwan_file; do
 			for dr in $d/*(N/); do
 				sudo mount --bind "$HOME/$dr" "$(realpath $dr)"
 			done
 		done
+		echo mounted
+
 		/usr/bin/git $@
+
 		for d in .config safwan_file; do
 			for dr in $d/*(N/); do
 				sudo umount $(realpath $dr)
 			done
 		done
+		echo unmounted
 	else
 		/usr/bin/git $@
 	fi
