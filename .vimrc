@@ -27,7 +27,7 @@ let &t_EI = "\e[1 q"
 map <C-x> <esc>ggdG<CR>
 
 " Colors and visual customization
-set termguicolors
+" set termguicolors
 colorscheme base16-ashes
 set cursorline
 set number

@@ -1,6 +1,8 @@
 PROMPT="%B%n%b: %F{cyan}%(5~|%-1~/.../%3~|%4~)%f %(!.#.$) "
 export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
 export PATH=$HOME/.local/bin:$PATH
 export LS_COLORS="tw=01;34:ow=01;34" # change the colors for o+w directories, so ugly and eye paining
 
@@ -16,25 +18,24 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
+# Clearing up of home directory (i love you archwiki https://wiki.archlinux.org/title/XDG_Base_Directory)
+export RUSTUP_HOME=$HOME/.local/share/rustup
+export CARGO_HOME=$HOME/.local/share/cargo
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+rm -rf ~/.zcompdump
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+
 # Ultra completion colors (but why are directories red can you fix that future safwan)
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
 
 # Don't repeat the same command when pressing up arrow, also makes duplicates gone in the history file but whatever
 setopt HIST_IGNORE_ALL_DUPS
 
-# Change .zcompdump location. Idk why i choose to change this specific file only while theres tons of other files in my home directory that needs changing.
-compinit -d $HOME/.cache/.zcompdump
-
 # Ok i return back to this mode the last extreme auto expand sucks
 zstyle ':completion:*' completer _expand_alias _complete _ignored expand-word
 
 # thefuck alias(????) setup
 eval $(thefuck --alias)
-
-# Rust installation to .local/share instead of ~
-export RUSTUP_HOME=$HOME/.local/share/rustup
-export CARGO_HOME=$HOME/.local/share/cargo
-source ~/.local/share/cargo/env 
 
 # Enable syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -56,7 +57,6 @@ alias lssize="du -sh * 2> /dev/null | sort -h"         # todo : make this alias 
 alias storage="df -h /"
 alias open="xdg-open 2> /dev/null"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
-alias paclist='python3 ~/safwan_file/scripts/better_pacman_ql_output.py'
 alias wlanoff="iwctl station wlan0 disconnect"
 alias wlanon="iwctl station wlan0 connect 'safwan 2.4GHz'"
 alias routine="feh ~/Documents/class\ 7/class_routine.png &"
@@ -129,6 +129,7 @@ gccc() {
 # - Only works when at the root of my-files (which is ~/safwan_home/my-files)
 # - Can only bind mount folders one layer deep, like myfiles/*/*
 # - TODO: try using the find command instead for this.
+# - Bruh using a fucking proper language like python is probably more suited for this, but i lose that extremely useful *(N/)
 git() {
 	if [[ "$PWD" =~ ^\/home\/safwan6363\/safwan_file\/my-files ]]; then
 		for d in .config safwan_file; do
@@ -151,6 +152,21 @@ git() {
 	fi
 }
 
+# Easy cloudflare warp toggle off and on
+warp() {
+	if ! systemctl status warp-svc > /dev/null; then
+		sudo systemctl start warp-svc.service
+		echo "started service"
+	fi
+
+	if warp-cli status | grep Disconnected > /dev/null; then
+		warp-cli connect
+		warp-cli status
+	else
+		warp-cli disconnect
+		warp-cli status
+	fi
+}
 
 commit() {
 	git commit -am $1 && git push
