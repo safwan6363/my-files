@@ -22,6 +22,8 @@ compinit
 export RUSTUP_HOME=$HOME/.local/share/rustup
 export CARGO_HOME=$HOME/.local/share/cargo
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 rm -rf ~/.zcompdump
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
