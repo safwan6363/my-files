@@ -129,24 +129,25 @@ gccc() {
 # Extremely bad way of making git think that my-files is a proper repo
 # limitations :-
 # - Only works when at the root of my-files (which is ~/safwan_home/my-files)
-# - Can only bind mount folders one layer deep, like myfiles/*/*
-# - TODO: try using the find command instead for this.
-# - Bruh using a fucking proper language like python is probably more suited for this, but i lose that extremely useful *(N/)
+# - Ok i kinda "hacked" that limitation
+# - That find command with pipes is probably sort of slow
+# - I am exhausted and finding the -empty option in the find command was a really close call
 git() {
 	if [[ "$PWD" =~ ^\/home\/safwan6363\/safwan_file\/my-files ]]; then
-		for d in .config safwan_file; do
-			for dr in $d/*(N/); do
-				sudo mount --bind "$HOME/$dr" "$(realpath $dr)"
-			done
+		cd ~/safwan_file/my-files
+		folders=( $(find -type d -empty -not -path './.git/*' | cut -d'/' -f 2- | tr '\n' ' ' ) )
+
+		for folder in $folders; do
+			sudo mount --bind $HOME/$folder $(realpath $folder)
 		done
 		echo mounted
 
 		/usr/bin/git $@
 
-		for d in .config safwan_file; do
-			for dr in $d/*(N/); do
-				sudo umount $(realpath $dr)
-			done
+		cd - > /dev/null
+
+		for folder in $folders; do
+			sudo umount $folder
 		done
 		echo unmounted
 	else
