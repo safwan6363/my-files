@@ -6,7 +6,7 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 Plugin 'chriskempson/base16-vim'
 call vundle#end()
 filetype plugin indent on
@@ -27,7 +27,7 @@ let &t_EI = "\e[1 q"
 map <C-x> <esc>ggdG<CR>
 
 " Colors and visual customization
-" set termguicolors
+set termguicolors
 colorscheme base16-ashes
 set cursorline
 set number

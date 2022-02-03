@@ -121,9 +121,11 @@ unblock() {
 # Ultra gcc shortcut function holy shit
 gccc() {
 	name=$(echo $1 | cut -d'.' -f1)
-	otherargs=$(echo $@ | cut -d' ' -f2-)
+	[[ -n $2 ]] && otherargs=$(echo $@ | cut -d' ' -f2-)
 
 	gcc $1 -o $name $otherargs
+
+	unset name; unset otherargs
 }
 
 # Extremely bad way of making git think that my-files is a proper repo
