@@ -13,14 +13,14 @@ if shit.stderr.decode("ascii"):
     sys.exit()
 
 output = shit.stdout.decode("ascii")[:-1].split('\n') # get rid of the trailing newline and split it to a list of strings
+package = output[0].split()[0]
 
-output = list(map(lambda x: x.removeprefix(f'{sys.argv[1]} ') , output)) # remove the program name before each line
+output = list(map(lambda x: ''.join(x.split()[1:]), output)) # remove the program name before each line
 output = list(filter(lambda x: not x.endswith('/'), output)) # Remove directories
 
 ls = subprocess.run(["ls", "-lFh", "--color=always"] + output, capture_output=True).stdout.decode("ascii").strip()
 
-print(ls)
-
+print(ls, '\n')
 
 # wasted three hours writing all these shit lmao before deciding on a much shorter less painful way of getting the paths 
 # # "\x1B[38;5;179"

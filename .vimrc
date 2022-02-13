@@ -11,6 +11,11 @@ Plugin 'chriskempson/base16-vim'
 call vundle#end()
 filetype plugin indent on
 
+" Extreme undofile setup so i don't lose undoes even after closing the file
+set undofile
+set undodir=~/.vim/undofiles
+set undolevels=10000
+
 " Ycm config
 set updatetime=1500
 let g:ycm_autoclose_preview_window_after_completion = 1
