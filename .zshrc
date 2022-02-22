@@ -29,8 +29,6 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export SSB_HOME="$XDG_DATA_HOME"/zoom
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-rm -rf ~/.java
 rm -rf ~/.zcompdump
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
@@ -57,7 +55,7 @@ alias ls="ls --color=auto"
 alias ll="ls -FlAhG --group-directories-first --color=always --time-style='+%d %b %Y %I:%M %p'"
 alias lls="ls -Flh --group-directories-first --color=always"
 alias lld="ll | grep '^d'"
-alias llf="ll | grep -v '^d\|^l'"                      # well shit this command can't display non directory links
+alias llf="ll | grep -v '^d\|^l'"                      # well shit this command can't display links to files
 alias grep="grep --color=auto"
 alias c="clear"
 alias hddon="sudo mount /dev/sda2 /mnt/hdd"
@@ -68,10 +66,12 @@ alias open="xdg-open 2> /dev/null"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias wifioff="iwctl station wlan0 disconnect"
 alias wifion="iwctl station wlan0 connect 'safwan 2.4GHz'"
-alias wifiinfo="iwctl station wlan0 show"
+alias wifiinfo="iwctl station wlan0 show"; alias wifistatus=wifiinfo
+alias wifiscan="iwctl station wlan0 scan; iwctl station wlan0 get-networks"
 alias routine="feh ~/Documents/class\ 7/class_routine.png &"
 alias bat="bat --theme=base16"
 alias less="less -R"
+alias lmao="echo Fuck you!"
 
 # done: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
@@ -103,12 +103,13 @@ volume() {
 
 block() {
 	cat <<-Fuck | sudo tee -a /etc/hosts
-		::1 www.discord.com
-		::1 cdn.discordapp.com
-		::1 www.youtube.com
-		::1 www.twitter.com
-		::1 twitter.com
-		::1 www.reddit.com
+		127.0.0.1 www.discord.com
+		127.0.0.1 cdn.discordapp.com
+		127.0.0.1 www.youtube.com
+		127.0.0.1 www.twitter.com
+		127.0.0.1 twitter.com
+		127.0.0.1 www.reddit.com
+		127.0.0.1 www.instagram.com
 Fuck
 }
 
