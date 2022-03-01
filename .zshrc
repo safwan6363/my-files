@@ -1,4 +1,4 @@
-PROMPT="%B%n%b: %F{cyan}%(5~|%-1~/.../%3~|%4~)%f %(!.#.$) "
+PROMPT="%B%n%b: %F{blue}%(5~|%-1~/.../%3~|%4~)%f %(!.#.$) "
 export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -52,7 +52,7 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # Aliases and functions
 alias ls="ls --color=auto"
-alias ll="ls -FlAhG --group-directories-first --color=always --time-style='+%d %b %Y %I:%M %p'"
+alias ll="ls -FlAhG --group-directories-first --color=always --time-style='+%d %b %Y %R (%I:%M %p)'"
 alias lls="ls -Flh --group-directories-first --color=always"
 alias lld="ll | grep '^d'"
 alias llf="ll | grep -v '^d\|^l'"                      # well shit this command can't display links to files

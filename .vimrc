@@ -40,7 +40,7 @@ set cursorline
 set number
 "ughok " clear background in line numbers and set custom ones
 "ughok highlight clear LineNr
-"ughok highlight LineNr ctermfg=darkgrey
+highlight LineNr ctermfg=darkgrey
 "ughok highlight clear CursorLineNr
 "ughok highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=252
 "ughok " The long cursor line highlight
