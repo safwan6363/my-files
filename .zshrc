@@ -56,7 +56,7 @@ alias ll="ls -FlAhG --group-directories-first --color=always --time-style='+%d %
 alias lls="ls -Flh --group-directories-first --color=always"
 alias lld="ll | grep '^d'"
 alias llf="ll | grep -v '^d\|^l'"                      # well shit this command can't display links to files
-alias llt="ll -T | tac"
+alias llt="ll -t | tac"
 alias grep="grep --color=auto"
 alias c="clear"
 alias hddon="sudo mount /dev/sda2 /mnt/hdd"
