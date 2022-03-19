@@ -75,7 +75,7 @@ alias wifiscan="iwctl station wlan0 scan; iwctl station wlan0 get-networks"
 alias routine="feh ~/Documents/class\ 7/class_routine.png &"
 alias bat="bat --theme=base16"
 alias less="less -R"
-alias lmao="echo Fuck you!"
+alias lmao="echo Fuck you!"; alias you=lmao; alias why=lmao;
 
 # done: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
