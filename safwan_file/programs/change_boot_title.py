@@ -16,4 +16,4 @@ with open("/etc/issue", "r+") as issue:
     lastline = issue.readlines()[-1]
     issue.seek(0) # just to be safe idk really if this needed
     issue.truncate(0)
-    issue.write(f"{random.choice(titles)}\n\nArch Linux \\r (\\l)\n\\d \\t\n")
+    issue.write(f"{random.choice(titles)}\n\nArch Linux \\r (\\l)\n\\d \\t\n\n")

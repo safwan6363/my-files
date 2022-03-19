@@ -29,6 +29,8 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export SSB_HOME="$XDG_DATA_HOME"/zoom
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+gpg2 --homedir "$XDG_DATA_HOME"/gnupg 2> /dev/null < /dev/null # fucking piece o fshit program
 rm -rf ~/.zcompdump
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
@@ -61,6 +63,7 @@ alias grep="grep --color=auto"
 alias c="clear"
 alias hddon="sudo mount /dev/sda2 /mnt/hdd"
 alias hddoff="sudo hdparm -Y /dev/sda"
+alias hddstatus="sudo hdparm -C /dev/sda"
 alias lssize="du -sh *(D) 2> /dev/null | sort -h"
 alias storage="df -h /"
 alias open="xdg-open 2> /dev/null"
@@ -103,14 +106,16 @@ volume() {
 }
 
 block() {
-	cat <<-Fuck | sudo tee -a /etc/hosts
-		127.0.0.1 www.discord.com
-		127.0.0.1 cdn.discordapp.com
-		127.0.0.1 www.youtube.com
-		127.0.0.1 www.twitter.com
-		127.0.0.1 twitter.com
-		127.0.0.1 www.reddit.com
-		127.0.0.1 www.instagram.com
+	cat <<-Fuck | awk '{print "127.0.0.1 "$0}' | sudo tee -a /etc/hosts
+		www.discord.com
+		cdn.discordapp.com
+		www.youtube.com
+		www.twitter.com
+		twitter.com
+		www.reddit.com
+		www.instagram.com
+		monkeytype.com
+		www.monkeytype.com
 Fuck
 }
 
