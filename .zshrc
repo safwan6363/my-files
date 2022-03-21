@@ -75,7 +75,9 @@ alias wifiscan="iwctl station wlan0 scan; iwctl station wlan0 get-networks"
 alias routine="feh ~/Documents/class\ 7/class_routine.png &"
 alias bat="bat --theme=base16"
 alias less="less -R"
-alias lmao="echo Fuck you!"; alias you=lmao; alias why=lmao;
+alias zshrc="vim .zshrc; exec zsh"
+alias lmao="exit;"; alias you=lmao; alias why=lmao; alias holy=lmao; alias how=lmao; alias fucking=lmao; alias die=lmao;
+alias please=lmao; alias plsea=lmao; alias plsaa=lmao; alias pelase=lmao; alias pleas=lmao; alias plase=lmao; alias plesae=lmao
 
 # done: pls make a function here that sets the opacity of alacritty once you have the knowledge to do it
 # update: i now have the knowledge to do it
@@ -117,6 +119,8 @@ block() {
 		monkeytype.com
 		www.monkeytype.com
 Fuck
+pkill firefox
+/usr/bin/firefox
 }
 
 # done: make this more harder to excute, like add something randomly generated to type out
