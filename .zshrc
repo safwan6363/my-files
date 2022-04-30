@@ -20,24 +20,26 @@ autoload -Uz compinit
 compinit
 
 # Cleaning up some files from home directory (i love you archwiki https://wiki.archlinux.org/title/XDG_Base_Directory)
-export RUSTUP_HOME=$HOME/.local/share/rustup
-export CARGO_HOME=$HOME/.local/share/cargo
-export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
-export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
-export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
-export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-export SSB_HOME="$XDG_DATA_HOME"/zoom
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-gpg2 --homedir "$XDG_DATA_HOME"/gnupg 2> /dev/null < /dev/null # fucking piece o fshit program
-rm -rf ~/.zcompdump
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+export RUSTUP_HOME=$HOME/.local/share/rustup                         # ~/.rustup/
+export CARGO_HOME=$HOME/.local/share/cargo                           # ~/.cargo/
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv                          # ~/.nv/ 
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter                         # ~/.ipython/ 
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter                 # 
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"            # ~/.python_history      
+rm -rf ~/.python_history                                             # 
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc              # ~/.npm/    
+export SSB_HOME="$XDG_DATA_HOME"/zoom                                # ~/.zoom/             
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc                # ~/.gtkrc           
+gpg2 --homedir "$XDG_DATA_HOME"/gnupg 2> /dev/null < /dev/null       # ~/.gnupg/ ????? fucking piece o fshit program
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg                              #
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION               # ~/.zcompdump            
+rm -rf ~/.zcompdump                                                  #
+alias svn='svn --config-dir "$XDG_CONFIG_HOME"/subversion'           # ~/.subversion/
 
 # Ultra completion colors (but why are directories red can you fix that future safwan)
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
 
-# Don't repeat the same command when pressing up arrow, also makes duplicates gone in the history file but whatever
+# Don't repeat the same command when pressing up arrow, also makes duplicates gone in the history file ugh o
 setopt HIST_IGNORE_ALL_DUPS
 
 # Ok i return back to this mode the last extreme auto expand sucks
@@ -69,7 +71,7 @@ alias storage="df -h /"
 alias open="xdg-open 2> /dev/null"
 alias feh="feh -. -Z --geometry 1392x783 --image-bg black"
 alias wifioff="iwctl station wlan0 disconnect"
-alias wifion="iwctl station wlan0 connect 'safwan 2.4GHz'"
+alias wifion="sudo rmmod 8192eu && sudo modprobe 8192eu && iwctl station wlan0 connect 'safwan 2.4GHz'"
 alias wifiinfo="iwctl station wlan0 show"; alias wifistatus=wifiinfo
 alias wifiscan="iwctl station wlan0 scan; iwctl station wlan0 get-networks"
 alias routine="feh ~/Documents/class\ 7/class_routine.png &"
@@ -105,6 +107,14 @@ fan() {
 
 volume() {
 	pactl set-sink-volume @DEFAULT_SINK@ ${1}%
+}
+
+# This fucking website ruins my time
+monkeytype() {
+	cat <<-Fuck | sudo tee -a /etc/hosts
+		127.0.0.1 www.monkeytype.com
+		127.0.0.1 monkeytype.com
+Fuck
 }
 
 block() {
@@ -152,7 +162,7 @@ gccc() {
 
 # Extremely bad way of making git think that my-files is a proper repo
 # limitations :-
-# - Only works when at the root of my-files (which is ~/safwan_home/my-files)
+# - (not anymore) Only works when at the root of my-files (which is ~/safwan_home/my-files)
 # - Ok i kinda "hacked" that limitation
 # - That find command with pipes is probably sort of slow
 # - I am exhausted and finding the -empty option in the find command was a really close call
@@ -249,7 +259,7 @@ fi
 # Set a good colorscheme in tty (copy pasted from http://web.archive.org/web/20150225020624/http://phraktured.net:80/linux-console-colors.html)
 if [ "$TERM" = "linux" ]; then
     #Black / Light black
-    # echo -en "\e]P0222222"
+    # echo -en "\e]P0222222" i don't want a background
     echo -en "\e]P8666666"
     #Red / Light red
     echo -en "\e]P1cc4747"
