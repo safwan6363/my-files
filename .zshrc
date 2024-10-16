@@ -169,13 +169,19 @@ gccc() {
 git() {
 	if [[ "$PWD" =~ ^\/home\/safwan6363\/safwan_file\/my-files ]]; then
 		cd ~/safwan_file/my-files
-		folders=( $(find -type d -empty -not -path './.git/*' | cut -d'/' -f 2- | tr '\n' ' ') )
+		folders=( $(find -type d -empty -not -path './.git/*' | cut -d'/' -f 2- | tr '\n' ' ') ) # so i guess this is to just work around the directories. the dot files in my actual home directory are symbolic links...... (not anymore)
+		files=( $(find -maxdepth 1 -type f -not -name "README.md" | cut -d'/' -f 2- | tr '\n' ' ') )
 
 		for folder in $folders; do
-			sudo mount --bind $HOME/$folder $(realpath $folder)
+			sudo mount --bind $HOME/$folder $(realpath $folder) # do i really need realpath?
 		done
-		echo mounted
 
+		for file in $files; do
+			sudo mount --bind $HOME/$file $(realpath $file) # why did i not realize i could do this before?
+		done
+
+		echo mounted
+        
 		/usr/bin/git $@
 
 		cd - > /dev/null
@@ -183,6 +189,10 @@ git() {
 		for folder in $folders; do
 			sudo umount $folder
 		done
+		for file in $files; do
+			sudo umount $file # also weird behaviour from the mount command; it literally accumulates mounts like if you mount something twice you also have to unmount it twice how does that work
+		done		
+
 		echo unmounted
 	else
 		/usr/bin/git $@
