@@ -26,7 +26,7 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv                          # ~/.nv/
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter                         # ~/.ipython/ 
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter                 # 
 # export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"            # ~/.python_history what this doesn't even work
-export PYTHON_HISTORY=$HOME/python/history                 # ~/.python_history
+export PYTHON_HISTORY=$HOME/python/history                           # ~/.python_history
 rm -rf ~/.python_history                                             # 
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc              # ~/.npm/    
 export SSB_HOME="$XDG_DATA_HOME"/zoom                                # ~/.zoom/             
