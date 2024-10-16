@@ -6,9 +6,10 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'w0ng/vim-hybrid'
+" Plugin 'raimondi/delimitmate'
 " Plugin 'valloric/youcompleteme'
 " Plugin 'chriskempson/base16-vim'
-Plugin 'w0ng/vim-hybrid'
 call vundle#end()
 filetype plugin indent on
 
@@ -38,7 +39,7 @@ set background=dark
 colorscheme hybrid
 set cursorline
 set number
-"ughok " clear background in line numbers and set custom ones
+" clear background in line numbers and set custom ones
 "ughok highlight clear LineNr
 highlight LineNr ctermfg=darkgrey
 "ughok highlight clear CursorLineNr
@@ -51,6 +52,9 @@ highlight LineNr ctermfg=darkgrey
 "ughok highlight Pmenu ctermbg=236 ctermfg=7
 " Make the vim background color transparent
 highlight Normal guibg=NONE ctermbg=NONE
+
+" Automatically close braces
+inoremap {<CR> {<CR>}<Esc>ko
 
 " Move lines up or down by alt j-k, fucking hell it doesnt work
 " nnoremap <A-j> :m +1<CR>
