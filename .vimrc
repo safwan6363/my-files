@@ -1,5 +1,5 @@
 " Why do i even have to do this bruhhhhhhhhhhhhHHh i fucking went insane trying to figure this out
-source /usr/share/vim/vim82/defaults.vim
+source /usr/share/vim/vim91/defaults.vim
 
 " vundle configuration shit
 set nocompatible
